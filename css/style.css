@@ -11,13 +11,104 @@
     margin: 0;
     padding: 0;
 }
-
+/*body section*/
 body {
     font-family: 'Arial', sans-serif; /* temporary font, change later */
     background-color: var(--background-color);
     color: var(--text-color);
     line-height: 1.6;
 }
+/*nav section*/
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+nav a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--primary-color);
+}
+
+nav h1 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    letter-spacing: 0.1rem;
+}
+
+header {
+    padding: 1rem 5%;
+    border-bottom: 1px solid #27272a;
+}
+/*hero section*/
+#hero {
+    display: flex;
+    min-height: 70vh;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem 5%;
+}
+
+.hero-content {
+    max-width: 800px;
+    width: 100%;
+}
+
+.hero-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.hero-content p {
+    font-size: 1.1rem;
+    color: var(--secondary-color);
+    margin-bottom: 1.5rem;
+}
+
+.hero-content button {
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 0.5rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}   
+
+.anime-btn {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+}
+
+.manga-btn {
+  border: 1px solid var(--primary-color);
+  background-color: transparent;
+  color: var(--primary-color);
+}
+
+.anime-btn:hover {
+    background-color: var(--text-color);
+    color: var(--primary-color);
+}
+
+.manga-btn:hover {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+}
+
 
 
 
