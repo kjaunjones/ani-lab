@@ -6,7 +6,7 @@
     --card-color: #181820;
 }
 
- * {
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -108,7 +108,44 @@ header {
     background-color: var(--primary-color);
     color: var(--text-color);
 }
+/*trending section*/
+#trending {
+    padding: 4rem 5%;
+}
 
+#trending h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
 
+.content-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
 
+.media-card {
+    background-color: var(--card-color);
+    padding: 1rem;
+    border-radius: 0.75rem;
+}
 
+.media-card img {
+    width: 100%;
+    border-radius: 0.5rem;
+    object-fit: cover;
+    height: 300px;
+}
+
+.media-card h3 {
+    font-size: 1.2rem;
+    margin: 0.75rem 0 0.5rem;
+    color: var(--text-color);
+}
+
+.media-card p {
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+    margin-bottom: 0.25rem;
+}
