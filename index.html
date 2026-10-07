@@ -4,13 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/0010c1b56c.js" crossorigin="anonymous"></script>
     <title>ANI-LAB</title>
 </head>
 <body>
     <header>
         <nav>
             <h1>ANI-LAB</h1>
-            <ul>
+            <button class="menu-toggle" aria-label="Toggle menu" type="button" aria-expanded="false" aria-controls="nav-links">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <ul id="nav-links">
                 <li><a href="#hero">Home</a></li>
                 <li><a href="#trending">Trending</a></li>
                 <li><a href="#latest-anime">Latest Anime</a></li>

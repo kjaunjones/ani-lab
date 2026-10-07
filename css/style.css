@@ -150,6 +150,10 @@ header {
     margin-bottom: 0.25rem;
 }
 
+.menu-toggle {
+    display: none;
+}
+
 /*media queries*/
 @media (max-width: 768px) {
     nav {
@@ -161,9 +165,18 @@ header {
         flex-direction: column;
         gap: 0.5rem;
         text-align: center;
+        display: none;
+    }
+
+    nav ul.active {
+        display: flex;
     }
 
     .hero-title {
         font-size: 2rem;
+    }
+
+    .menu-toggle {
+        display: block;
     }
 }
