@@ -116,3 +116,56 @@ async function getLatestAnime() {
 }
 
 getLatestAnime();
+
+const searchForm = document.querySelector('#search-form');
+const searchInput = document.querySelector('#search-input');
+const searchType = document.querySelector('#search-type');
+const searchResults = document.querySelector('#search-results');
+
+searchForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const query = searchInput.value.trim();
+    const type = searchType.value;
+
+    if (!query) return;
+
+    try {
+        const response = await fetch(
+            `https://kitsu.io/api/edge/${type}?filter[text]=${encodeURIComponent(query)}&page[limit]=10`
+        );
+
+        if (!response.ok) {
+            throw new Error('Search request failed');
+        }
+
+        const data = await response.json();
+
+        if (data.data.length === 0) {
+            searchResults.textContent = 'No results found.';
+            return;
+        }
+
+        if (type === 'anime') {
+            displayAnime(data.data, searchResults);
+        } else {
+            displayManga(data.data, searchResults);
+        }
+
+    } catch (error) {
+        console.error('Search error:', error);
+        searchResults.textContent = 'Unable to load results. Please try again.';
+    }
+});
+
+document.querySelector('.anime-btn').addEventListener('click', () => {
+    document.querySelector('#latest-anime').scrollIntoView({
+        behavior: 'smooth'
+    });
+});
+
+document.querySelector('.manga-btn').addEventListener('click', () => {
+    document.querySelector('#latest-manga').scrollIntoView({
+        behavior: 'smooth'
+    });
+});

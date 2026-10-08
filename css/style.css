@@ -154,6 +154,53 @@ header {
     display: none;
 }
 
+/* Search section */
+#search {
+    padding: 4rem 5%;
+    text-align: center;
+}
+
+#search h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+#search-form {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+#search-input, #search-type {
+    padding: 0.8rem 1rem;
+    border: 1px solid #27272a;
+    border-radius: 0.5rem;
+    background-color: var(--card-color);
+    color: var(--text-color);
+}
+
+#search-input {
+    flex: 1;
+    max-width: 400px;
+    min-width: 200px;
+}
+
+#search-form button {
+    padding: 0.8rem 1.5rem;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+#search-form button:hover {
+    background-color: var(--text-color);
+    color: var(--primary-color);
+}
+
 /*media queries*/
 @media (max-width: 768px) {
     nav {
