@@ -3,22 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--SEO Meta Tags -->
+    <meta name="keywords" content="Anime, Manga, Trending Anime, Latest Anime, Latest Manga">
+    <meta name="description" content="Discover trending anime, explore manga, and search for your next favourite series with ANI-LAB.">
+    <!--STYLESHEET-->
     <link rel="stylesheet" href="css/style.css">
+    <!--FONT AWESOME-->
     <script src="https://kit.fontawesome.com/0010c1b56c.js" crossorigin="anonymous"></script>
     <title>ANI-LAB</title>
 </head>
 <body>
+    <!--HEADER AND NAVIGATION-->
     <header>
-        <nav>
-            <h1>ANI-LAB</h1>
-            <button class="menu-toggle" aria-label="Toggle menu" type="button" aria-expanded="false" aria-controls="nav-links">
-                <i class="fa-solid fa-bars"></i>
+        <nav aria-label="Main navigation">
+            <h1 class="site-logo">
+                <a href="#hero">ANI-LAB</a>
+            </h1>
+            <!-- Mobile navigation toggle -->
+            <button class="menu-toggle" type="button"
+                aria-label="Toggle navigation menu"
+                aria-expanded="false"
+                aria-controls="nav-links">
+                <i class="fa-solid fa-bars" aria-hidden="true"></i>
             </button>
+            <!-- Navigation links -->
             <ul id="nav-links">
-                <li><a href="#hero">Home</a></li>
-                <li><a href="#trending">Trending</a></li>
-                <li><a href="#latest-anime">Latest Anime</a></li>
-                <li><a href="#latest-manga">Latest Manga</a></li>
+                <li>
+                    <a href="#hero">Home</a>
+                </li>
+                <li>
+                    <a href="#trending">Trending</a>
+                </li>
+                <li>
+                    <a href="#latest-anime">Latest Anime</a>
+                </li>
+                <li>
+                    <a href="#latest-manga">Latest Manga</a>
+                </li>
+                <!-- Search form: desktop navbar / mobile menu -->
+                <li class="nav-search">
+                    <form id="search-form" role="search">
+                        <input type="search" id="search-input" name="search" placeholder="Search anime or manga..."
+                         aria-label="Search anime or manga"
+                            required>
+                        <select id="search-type"
+                            name="media-type"
+                            aria-label="Choose media type">
+                            <option value="anime">Anime</option>
+                            <option value="manga">Manga</option>
+                        </select>
+
+                        <button type="submit" aria-label="Search anime or manga">
+                            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                    </button>
+                    </form>
+                </li>
             </ul>
         </nav>
     </header>
