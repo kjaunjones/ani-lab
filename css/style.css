@@ -38,6 +38,14 @@ button {
     cursor: pointer;
 }
 
+/* HIDDEN ELEMENTS */
+
+[hidden] {
+    display: none !important;
+}
+
+/* ACCESSIBILITY */
+
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
@@ -177,36 +185,61 @@ nav a:hover {
 
 #hero {
     display: flex;
-    min-height: 70vh;
+    min-height: 75vh;
     align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 2rem 5%;
+    justify-content: flex-start;
+    padding: 4rem 5%;
+
+    background-image:
+        linear-gradient(
+            90deg,
+            rgba(11, 11, 15, 0.9) 0%,
+            rgba(11, 11, 15, 0.7) 40%,
+            rgba(11, 11, 15, 0.2) 100%
+        ),
+        url("../assets/images/ani-lab-hero.webp");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: var(--background-color);
 }
 
+/* HERO CONTENT */
+
 .hero-content {
-    max-width: 800px;
+    max-width: 650px;
     width: 100%;
+    text-align: left;
+    position: relative;
+    z-index: 1;
 }
 
 .hero-title {
-    font-size: 2.5rem;
+    font-size: clamp(2rem, 4vw, 3.5rem);
     margin-bottom: 1rem;
     line-height: 1.2;
+    color: var(--text-color);
 }
 
 .hero-content p {
     font-size: 1.1rem;
-    color: var(--secondary-color);
+    color: var(--text-color);
     margin-bottom: 1.5rem;
+    max-width: 500px;
 }
+
+/* HERO BUTTONS */
 
 .hero-content button {
     padding: 0.8rem 1.5rem;
-    margin: 0.5rem;
+    margin: 0.5rem 0.5rem 0.5rem 0;
     font-weight: bold;
     border-radius: 0.5rem;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease;
 }
 
 .anime-btn {
@@ -216,19 +249,21 @@ nav a:hover {
 }
 
 .manga-btn {
-    background-color: transparent;
-    color: var(--primary-color);
+    background-color: rgba(11, 11, 15, 0.5);
+    color: var(--text-color);
     border: 1px solid var(--primary-color);
 }
 
 .anime-btn:hover {
     background-color: var(--text-color);
     color: var(--primary-color);
+    transform: translateY(-2px);
 }
 
 .manga-btn:hover {
     background-color: var(--primary-color);
     color: var(--text-color);
+    transform: translateY(-2px);
 }
 
 /* CONTENT SECTIONS */
@@ -241,7 +276,6 @@ nav a:hover {
     scroll-margin-top: 2rem;
 }
 
-#search h2,
 #trending h2,
 #latest-anime h2,
 #latest-manga h2 {
@@ -252,10 +286,16 @@ nav a:hover {
 
 /* SEARCH RESULTS */
 
+#search {
+    background-color: var(--background-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
 #search-message {
     color: var(--secondary-color);
     text-align: center;
     margin-bottom: 1.5rem;
+    font-size: 1rem;
 }
 
 /* CONTENT GRID */
@@ -453,6 +493,17 @@ nav a:hover {
     #search-input {
         width: min(400px, 100%);
     }
+
+    /* TABLET HERO */
+
+    #hero {
+        min-height: 70vh;
+        background-position: 55% center;
+    }
+
+    .hero-content {
+        max-width: 600px;
+    }
 }
 
 /* MOBILE STYLES */
@@ -537,8 +588,23 @@ nav a:hover {
     /* MOBILE HERO */
 
     #hero {
-        min-height: 60vh;
+        min-height: 65vh;
         padding: 3rem 5%;
+        align-items: center;
+        background-position: 60% center;
+
+        background-image:
+            linear-gradient(
+                90deg,
+                rgba(11, 11, 15, 0.85) 0%,
+                rgba(11, 11, 15, 0.65) 60%,
+                rgba(11, 11, 15, 0.35) 100%
+            ),
+            url("../assets/images/ani-lab-hero.webp");
+    }
+
+    .hero-content {
+        max-width: 100%;
     }
 
     .hero-title {
@@ -558,7 +624,6 @@ nav a:hover {
         padding: 3rem 5%;
     }
 
-    #search h2,
     #trending h2,
     #latest-anime h2,
     #latest-manga h2 {
@@ -578,14 +643,40 @@ nav a:hover {
 /* SMALL MOBILE SCREENS */
 
 @media (max-width: 480px) {
+    /* SMALL MOBILE HERO */
+
+    #hero {
+        min-height: 70vh;
+        padding: 3rem 5%;
+        justify-content: center;
+        background-position: 65% center;
+
+        background-image:
+            linear-gradient(
+                rgba(11, 11, 15, 0.7),
+                rgba(11, 11, 15, 0.85)
+            ),
+            url("../assets/images/ani-lab-hero.webp");
+    }
+
+    .hero-content {
+        text-align: center;
+    }
+
     .hero-title {
-        font-size: 1.7rem;
+        font-size: 1.8rem;
+    }
+
+    .hero-content p {
+        max-width: 100%;
     }
 
     .hero-content button {
         width: 100%;
         margin: 0.5rem 0;
     }
+
+    /* SMALL MOBILE CONTENT */
 
     .content-grid {
         grid-template-columns: 1fr;

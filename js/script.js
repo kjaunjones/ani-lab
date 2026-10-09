@@ -15,15 +15,18 @@ menuToggle.addEventListener('click', () => {
     menuIcon.classList.toggle('fa-xmark', isOpen);
 });
 
-// CLOSE THE MOBILE MENU WHEN A LINK IS CLICKED
-navItems.forEach(item => {
-    item.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        menuToggle.setAttribute('aria-expanded', 'false');
+// CLOSE THE MOBILE MENU
+function closeMobileMenu() {
+    navLinks.classList.remove('active');
+    menuToggle.setAttribute('aria-expanded', 'false');
 
-        menuIcon.classList.add('fa-bars');
-        menuIcon.classList.remove('fa-xmark');
-    });
+    menuIcon.classList.add('fa-bars');
+    menuIcon.classList.remove('fa-xmark');
+}
+
+// CLOSE THE MENU WHEN A NAVIGATION LINK IS CLICKED
+navItems.forEach(item => {
+    item.addEventListener('click', closeMobileMenu);
 });
 
 // DOM ELEMENTS
@@ -32,6 +35,7 @@ const trendingGrid = document.querySelector('#trending-grid');
 const animeGrid = document.querySelector('#anime-grid');
 const mangaGrid = document.querySelector('#manga-grid');
 
+const searchSection = document.querySelector('#search');
 const searchForm = document.querySelector('#search-form');
 const searchInput = document.querySelector('#search-input');
 const searchType = document.querySelector('#search-type');
@@ -125,6 +129,7 @@ function createMediaCard(media, type) {
     card.setAttribute('role', 'button');
     card.setAttribute('tabindex', '0');
     card.setAttribute('aria-pressed', 'false');
+
     card.setAttribute(
         'aria-label',
         `${title}. Press Enter or Space to view details.`
@@ -239,7 +244,15 @@ function createMediaCard(media, type) {
                 ? `${title}. Press Enter or Space to return to the poster.`
                 : `${title}. Press Enter or Space to view details.`
         );
+
+        // HIDE THE INACTIVE CARD FACE FROM SCREEN READERS
+        cardFront.setAttribute('aria-hidden', String(isFlipped));
+        cardBack.setAttribute('aria-hidden', String(!isFlipped));
     }
+
+    // SET THE INITIAL ACCESSIBILITY STATE
+    cardFront.setAttribute('aria-hidden', 'false');
+    cardBack.setAttribute('aria-hidden', 'true');
 
     // FLIP THE CARD WHEN CLICKED
     card.addEventListener('click', flipCard);
@@ -289,7 +302,7 @@ async function loadSection(url, grid, type) {
     }
 }
 
-// TRENDING ANIME
+// TOP-RATED ANIME
 
 async function getTopAnime() {
     await loadSection(
@@ -336,34 +349,48 @@ searchForm.addEventListener('submit', async event => {
 
     // PREVENT EMPTY SEARCHES
     if (!query) {
+        searchSection.hidden = false;
+        searchMessage.hidden = false;
+
         searchMessage.textContent =
             'Please enter an anime or manga title.';
+
         return;
     }
+
+    // CLOSE THE MOBILE NAVIGATION
+    closeMobileMenu();
+
+    // SHOW THE SEARCH RESULTS SECTION
+    searchSection.hidden = false;
+    searchMessage.hidden = false;
 
     // CLEAR PREVIOUS SEARCH RESULTS
     searchResults.replaceChildren();
 
+    // DISPLAY LOADING MESSAGE
     searchMessage.textContent = 'Searching...';
 
     // SCROLL TO THE SEARCH RESULTS SECTION
-    document.querySelector('#search').scrollIntoView({
+    searchSection.scrollIntoView({
         behavior: 'smooth'
     });
 
     try {
         // CREATE THE SEARCH URL
-        const url =
-            `${API_BASE_URL}/${type}` +
-            `?filter[text]=${encodeURIComponent(query)}` +
-            '&page[limit]=10';
+        const url = new URL(`${API_BASE_URL}/${type}`);
 
-        const mediaList = await fetchMedia(url);
+        url.searchParams.set('filter[text]', query);
+        url.searchParams.set('page[limit]', '10');
+
+        // FETCH SEARCH RESULTS
+        const mediaList = await fetchMedia(url.toString());
 
         // HANDLE SEARCHES WITH NO RESULTS
         if (mediaList.length === 0) {
             searchMessage.textContent =
                 `No ${type} results found for "${query}".`;
+
             return;
         }
 
