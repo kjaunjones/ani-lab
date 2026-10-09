@@ -376,10 +376,8 @@ nav a:hover {
 }
 
 .card-front h3 {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
+    line-height: 1.4;
+    max-height: 2.8em;
     overflow: hidden;
 }
 

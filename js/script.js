@@ -109,9 +109,7 @@ function createMediaCard(media, type) {
         'Untitled'
     );
 
-    const rating = attributes.averageRating
-        ? `${attributes.averageRating}%`
-        : 'N/A';
+    const rating = attributes.averageRating ? `${attributes.averageRating}%` : 'N/A';
 
     const status = getValue(attributes.status);
 
@@ -238,12 +236,9 @@ function createMediaCard(media, type) {
 
         card.setAttribute('aria-pressed', String(isFlipped));
 
-        card.setAttribute(
-            'aria-label',
-            isFlipped
-                ? `${title}. Press Enter or Space to return to the poster.`
-                : `${title}. Press Enter or Space to view details.`
-        );
+        const cardLabel = isFlipped ? `${title}. Press Enter or Space to return to the poster.` : `${title}. Press Enter or Space to view details.`;
+
+        card.setAttribute('aria-label', cardLabel);
 
         // HIDE THE INACTIVE CARD FACE FROM SCREEN READERS
         cardFront.setAttribute('aria-hidden', String(isFlipped));
